@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+</head>
+<body class="flex flex-col h-screen">
+    <header>
+        <nav class="flex items-center justify-between bg-neutral-600 flex-wrap p-4">
+            <div class="flex items-center flex-shrink-0 text-white mr-6 ml-6 font-ubuntu antialiased">
+                <a href="@Url.Action("Index", "Home")" class="font-semibold text-3xl tracking-tight pb-1 hover:no-underline hover:text-white">Blog</a>
+            </div>
+            <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto text-white ml-6 antialiased font-ubuntu">
+                <div class="text-lg lg:flex-grow space-x-2">
+                    <a href="@Url.Action("Index", "Home")" class="block lg:inline-block lg:mt-0 hover:text-slate-300 mr-4 hover:no-underline">
+                        Home
+                    </a> 
+                    <div class="dropdown block  lg:inline-block lg:mt-0 text-slate-300 mr-4 cursor-pointer">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admin
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="@Url.Action("Add","AdminTags")">Addtag</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+        
+     
+   <!--
+
+   <footer class="border-t border-gray-200 text-center py-4 mt-4 bottom-0">
+        <div class="container mx-auto">
+            &copy; 2024 - Blog_App - <a href="@Url.Action("Privacy", "Home")" class="text-black hover:text-gray-500">Privacy</a>
+        </div>
+     </footer> -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

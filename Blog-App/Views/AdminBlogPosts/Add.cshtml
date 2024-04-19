@@ -1,0 +1,128 @@
+﻿@model Blog_App.Models.ViewModels.AddBlogPostRequest
+@{
+}
+
+
+<h1 class="text-3xl font-ubuntu p-4 bg-slate-400 font-semibold sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-left text-black">
+    Add New Blog Post - Admin Functionality
+</h1>
+
+
+<div class="flex justify-center items-center mt-24 font-ubuntu">
+    <form class="w-3/4 bg-white shadow-lg rounded-2xl px-8 pt-6 pb-8 mb-4 border-2 border-zinc-400" method="post">
+        <div class="mb-4">
+            <label class="block text-gray-700 text-2xl mb-2 font-bold" for="heading">
+                Heading
+            </label>
+            <input class="appearance-none border-2 border-black rounded-xl w-full py-2 px-3 text-gray-700 text-xl leading-tight focus:outline-none focus:shadow-outline focus:drop-shadow-xl" id="heading" type="text" placeholder="Heading" asp-for="Heading">
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-2xl mb-2 font-bold" for="pageTitle">
+                Page Title
+            </label>
+            <input class="appearance-none border-2 border-black rounded-xl w-full py-2 px-3 text-gray-700 text-xl leading-tight focus:outline-none focus:shadow-outline focus:drop-shadow-xl" id="pageTitle" type="text" placeholder="Page Title" asp-for="PageTitle">
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-2xl mb-2 font-bold" for="content">
+               Content
+            </label>
+            <textarea class="appearance-none border-2 border-black rounded-xl w-full py-2 px-3 text-gray-700 text-xl leading-tight focus:outline-none focus:shadow-outline focus:drop-shadow-xl" id="content" type="text" placeholder="Content" asp-for="Content"></textarea>
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-2xl mb-2 font-bold" for="shortDescription">
+                Short Description
+            </label>
+            <input class="appearance-none border-2 border-black rounded-xl w-full py-2 px-3 text-gray-700 text-xl leading-tight focus:outline-none focus:shadow-outline focus:drop-shadow-xl" id="shortDescription" type="text" placeholder="Short Description" asp-for="ShortDescription">
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-2xl mb-2 font-bold" for="featuredImageUpload">
+                Featured Image Upload
+            </label>
+            <input class="appearance-none border-2 border-black rounded-xl w-full py-2 px-3 text-gray-700 text-xl leading-tight focus:outline-none focus:shadow-outline focus:drop-shadow-xl" id="featuredImageUpload" type="file" asp-for="ShortDescription">
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-2xl mb-2 font-bold" for="featuredImageUrl">
+                Featured Image Url
+            </label>
+            <input class="appearance-none border-2 border-black rounded-xl w-full py-2 px-3 text-gray-700 text-xl leading-tight focus:outline-none focus:shadow-outline focus:drop-shadow-xl" id="featuredImageUrl" type="text" placeholder="Featured Image Url" asp-for="FeaturedImageUrl">
+            <img src="" id="featuredImageDisplay" class="mt-4 w-full h-64 object-cover rounded-xl shadow-lg" style="display:none;" />
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-2xl mb-2 font-bold" for="urlHandle">
+                Url Handle
+            </label>
+            <input class="appearance-none border-2 border-black rounded-xl w-full py-2 px-3 text-gray-700 text-xl leading-tight focus:outline-none focus:shadow-outline focus:drop-shadow-xl" id="urlHandle" type="text" placeholder="Url Handle" asp-for="UrlHandle">
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-2xl mb-2 font-bold" for="publishedDate">
+                Published Date
+            </label>
+            <input class="appearance-none border-2 border-black rounded-xl w-full py-2 px-3 text-gray-700 text-xl leading-tight focus:outline-none focus:shadow-outline focus:drop-shadow-xl" id="publishedDate" type="date"  asp-for="PublishedDate">
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-2xl mb-2 font-bold" for="author">
+                Author
+            </label>
+            <input class="appearance-none border-2 border-black rounded-xl w-full py-2 px-3 text-gray-700 text-xl leading-tight focus:outline-none focus:shadow-outline focus:drop-shadow-xl" id="author" type="text" placeholder="Author" asp-for="Author">
+        </div>
+
+        <div class="mb-4">
+            <div class="mb-4 flex items-center">
+                <input type="checkbox" id="visible" asp-for="Visible" class="h-6 w-6 border-2 border-black rounded-xl text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:drop-shadow-xl mr-2" />
+                <label class="text-gray-700 text-xl" for="visible">Is Visible?</label>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-2xl mb-2 font-bold" for="author">
+                Tags
+            </label>
+            <select class="appearance-none border-2 border-black rounded-xl w-full py-2 px-3 text-gray-700 text-xl leading-tight focus:outline-none focus:shadow-outline focus:drop-shadow-xl" asp-items="@Model.Tags" asp-for="SelectedTags"></select>
+        </div>
+
+        <div class="flex items-center justify-between">
+            <button class="bg-black text-white hover:drop-shadow-xl font-bold py-2 px-4 rounded" type="submit">
+                Submit
+            </button>
+        </div>
+
+    </form>
+</div>
+
+@section Scripts{
+    <script>
+        var editor = new FroalaEditor('#content', {
+            imageUploadURL: '/api/Images',
+        });
+
+        const featuredUploadElement = document.getElementById('featuredImageUpload');
+        const featuredUrlElement = document.getElementById('featuredImageUrl');
+        const featuredDisplayElement = document.getElementById('featuredImageDisplay'); 
+
+        async function uploadFeaturedImage(e) {
+            let data = new FormData();
+            data.append('file', e.target.files[0]);
+
+            await fetch('/api/Images', {
+                method: "POST",
+                headers: {
+                    "Accept": "*/*"
+                },
+                body: data,
+            }).then(res => res.json()).then(result => {
+                featuredUrlElement.value = result.link;
+                featuredDisplayElement.src = result.link;
+                featuredDisplayElement.style.display = 'block';
+            });
+        }
+        featuredUploadElement.addEventListener('change', uploadFeaturedImage);
+    </script>
+}

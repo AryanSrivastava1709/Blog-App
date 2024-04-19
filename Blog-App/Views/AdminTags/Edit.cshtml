@@ -1,0 +1,51 @@
+﻿@model Blog_App.Models.ViewModels.EditTagRequest
+@{
+}
+
+<h1 class="text-3xl font-ubuntu p-4 bg-slate-400 font-semibold sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-left text-black">
+    Edit Tag - Admin Functionality
+</h1>
+
+<div class="flex justify-center items-center mt-24 font-ubuntu">
+
+    @if (Model != null)
+    {
+    <form class="w-3/4 bg-white shadow-lg rounded-2xl px-8 pt-6 pb-8 mb-4 border-2 border-zinc-400" method="post">
+        <div class="mb-4">
+            <label class="block text-gray-700 text-2xl mb-2 font-bold" for="name">
+                Id
+            </label>
+            <input class="appearance-none bg-slate-200 border-2 border-black rounded-xl w-full py-2 px-3 text-gray-700 text-xl leading-tight focus:outline-none focus:shadow-outline focus:drop-shadow-xl hover:cursor-not-allowed" id="name" type="text" placeholder="Name" asp-for="Id" readonly>
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-2xl mb-2 font-bold" for="name">
+                Name
+            </label>
+            <input class="appearance-none border-2 border-black rounded-xl w-full py-2 px-3 text-gray-700 text-xl leading-tight focus:outline-none focus:shadow-outline focus:drop-shadow-xl" id="name" type="text" placeholder="Name" asp-for="Name">
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-2xl mb-2 font-bold" for="displayName">
+                Display Name
+            </label>
+            <input class="appearance-none border-2 border-black rounded-xl w-full py-2 px-3 text-gray-700 text-xl leading-tight focus:outline-none focus:shadow-outline focus:drop-shadow-xl" id="displayName" type="text" placeholder="Display Name" asp-for="DisplayName">
+        </div>
+
+        <div class="flex items-center space-x-2">
+            <button class="bg-black text-white hover:drop-shadow-xl font-bold py-2 px-4 rounded" type="submit">
+                Submit
+            </button>
+            <button class="bg-red-600 text-white hover:drop-shadow-xl font-bold py-2 px-4 rounded" asp-action="Delete" asp-controller="AdminTags" asp-area="">
+                Delete
+            </button>
+        </div>
+        </form>
+    }
+    else
+    {
+        <p class="text-2xl font-ubuntu text-center text-gray-600">No tag found</p>
+    }
+
+
+</div>

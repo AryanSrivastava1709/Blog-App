@@ -8,24 +8,29 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+    <link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>
 </head>
 <body class="flex flex-col h-screen">
     <header>
-        <nav class="flex items-center justify-between bg-neutral-600 flex-wrap p-4">
+        <nav class="flex items-center justify-between bg-gray-800 flex-wrap p-4">
             <div class="flex items-center flex-shrink-0 text-white mr-6 ml-6 font-ubuntu antialiased">
-                <a href="@Url.Action("Index", "Home")" class="font-semibold text-3xl tracking-tight pb-1 hover:no-underline hover:text-white">Blog</a>
+                <a href="@Url.Action("Index", "Home")" class="font-semibold text-3xl tracking-tight pb-1 hover:no-underline hover:text-gray-300">Blog</a>
             </div>
             <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto text-white ml-6 antialiased font-ubuntu">
                 <div class="text-lg lg:flex-grow space-x-2">
-                    <a href="@Url.Action("Index", "Home")" class="block lg:inline-block lg:mt-0 hover:text-slate-300 mr-4 hover:no-underline">
+                    <a href="@Url.Action("Index", "Home")" class="block lg:inline-block lg:mt-0 hover:text-gray-300 mr-4 hover:no-underline">
                         Home
-                    </a> 
-                    <div class="dropdown block  lg:inline-block lg:mt-0 text-slate-300 mr-4 cursor-pointer">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    </a>
+                    <div class="dropdown block  lg:inline-block lg:mt-0 text-gray-300 mr-4 cursor-pointer">
+                        <button class="btn btn-secondary dropdown-toggle bg-transparent text-white hover:bg-gray-700" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Admin
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="@Url.Action("Add","AdminTags")">Addtag</a>
+                            <a class="dropdown-item" href="@Url.Action("Add","AdminTags")">Add Tag</a>
+                            <a class="dropdown-item" href="@Url.Action("List","AdminTags")">Show All Tags</a>
+                            <a class="dropdown-item" href="@Url.Action("Add","AdminBlogPosts")">Add Blog Post</a>
+                            <a class="dropdown-item" href="@Url.Action("List","AdminBlogPosts")">Show All Blog Post</a>
                         </div>
                     </div>
                 </div>

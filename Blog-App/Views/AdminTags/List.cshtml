@@ -1,0 +1,65 @@
+﻿@model List<Blog_App.Models.Domain.Tag>
+@{
+}
+
+
+<h1 class="text-3xl font-ubuntu p-4 bg-slate-400 font-semibold sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-left text-black">
+    All Tags - Admin Functionality
+</h1>
+
+
+<div class="container py-5 mx-auto px-4 sm:px-6 lg:px-8 font-ubuntu">
+    @if (Model != null && Model.Any())
+    {
+        <div class="flex flex-col">
+            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50 text-xl text-bold bg-slate-200">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left font-bold text-black uppercase tracking-wider">
+                                        Id
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left font-bold text-black uppercase tracking-wider">
+                                        Name
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left font-bold text-black uppercase tracking-wider">
+                                        Display Name
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left font-bold text-black uppercase tracking-wider">
+                                        Display Name
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left font-bold text-black uppercase tracking-wider">
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200 text-lg">
+                                @foreach (var tag in Model)
+                                {
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class=" text-gray-900">@tag.Id</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class=" text-gray-900">@tag.Name</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-gray-900">@tag.DisplayName</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <a asp-action="Edit" asp-controller="AdminTags" asp-area="" asp-route-id="@tag.Id" class="text-indigo-600 hover:text-indigo-900 bg-blue-500 hover:bg-blue-700 hover:no-underline text-white font-bold py-2 px-4 rounded">Edit</a>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <p class="text-2xl font-ubuntu text-center text-gray-600">No tags found</p>
+    }
+</div>

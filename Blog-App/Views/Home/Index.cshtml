@@ -1,8 +1,55 @@
-﻿@{
+﻿@model Blog_App.Models.ViewModels.HomeViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<section class="bg-teal-400 text-white font-ubuntu py-24 drop-shadow-2xl px-8 md:flex md:items-center md:justify-between m-4 border-4 border-sky-600 rounded-xl overflow-hidden shadow-2xl">
+    <div class="md:w-1/2">
+        <h1 class="text-4xl font-bold mb-4">Blog App</h1>
+        <p class="text-xl mb-4">Welcome to our blog community. This is a space for tech enthusiasts who are passionate about technologies such as C#, React, HTML, CSS, and JavaScript. Join us as we explore these topics and more.</p>
+    </div>
+    <div class="mt-8 md:mt-0 md:w-1/2 overflow-hidden">
+        <img src="https://images.pexels.com/photos/267569/pexels-photo-267569.jpeg" alt="Blog image" class="w-full h-96 object-cover rounded-lg shadow-lg transform transition duration-500 hover:scale-110">
+    </div>
+</section>
+
+<div class="container mx-auto px-4 font-ubuntu mt-20">
+    <h1 class="text-4xl font-bold text-center">Recent Blogs</h1>
+    <p class="my-6 text-center">
+        @if (Model != null && Model.Tags.Any())
+        {
+            @foreach (var tag in Model.Tags)
+            {
+                <span class="inline-block bg-green-500 hover:shadow-lg cursor-pointer rounded-lg p-2 text-white mr-2 mb-2">@tag.Name</span>
+            }
+        }
+    </p>
+    <div class="flex flex-wrap justify-center">
+
+        @if (Model != null && Model.BlogPosts.Any())
+        {
+            @foreach (var blog in Model.BlogPosts)
+            {
+                <div class="m-5 p-5 bg-gray-100 shadow-lg w-full md:w-1/2 lg:w-1/3 rounded-xl transform transition duration-500 hover:scale-105 hover:shadow-2xl overflow-hidden border-2 border-black">
+                    <img src="@blog.FeaturedImageUrl" alt="@blog.Heading" class="mb-2 block w-full h-48 object-cover rounded-t-xl" />
+                    <h2 class="mb-4 text-2xl font-semibold">@blog.Heading</h2>
+                    <p class="mb-4 text-lg">
+                        Author: @blog.Author
+                        <br />
+                        Published Date: @blog.PublishedDate.ToShortDateString()
+                    </p>
+
+                    <p class="mb-4">
+                        @foreach (var tag in blog.Tags)
+                        {
+                            <span class="inline-block bg-green-500 hover:shadow-lg cursor-pointer rounded-lg p-2 text-white mr-2 mb-2">@tag.Name</span>
+                        }
+                    </p>
+
+                    <p class="mb-4">@blog.ShortDescription</p>
+                    <a asp-area="" asp-action="Index" asp-controller="Blogs" asp-route-urlHandle="@blog.UrlHandle" class="btn bg-gray-800 text-white hover:bg-gray-700">Read More</a>
+                </div>
+            }
+        }
+    </div>
 </div>

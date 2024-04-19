@@ -1,0 +1,35 @@
+﻿@model Blog_App.Models.Domain.BlogPost
+@{
+}
+
+
+<div class="container mx-auto my-5 px-4 font-ubuntu">
+    <div class="flex flex-wrap justify-center">
+        <div class="w-3/5 mx-auto bg-white p-5 rounded-lg shadow-md">
+            @if (Model != null)
+            {
+                <h1 class="mb-3 font-bold text-2xl">@Model.PageTitle</h1>
+                <div class="mb-2 w-full h-48 overflow-hidden rounded-t-xl">
+                    <img src="@Model.FeaturedImageUrl" alt="@Model.Heading" class="block w-full h-full object-cover" />
+                </div>
+                <div class="flex justify-between mb-4 text-lg">
+                    <p>Author: @Model.Author</p>
+                    <p>Published Date: @Model.PublishedDate.ToShortDateString()</p>
+                </div>
+
+                <p class="mb-6">
+                    @foreach (var tag in Model.Tags)
+                    {
+                        <span class="inline-block bg-green-500 hover:shadow-lg cursor-pointer rounded-lg p-2 text-white mr-2 mb-2">@tag.Name</span>
+                    }
+                </p>
+
+                <div class="mb-6 prose prose-green max-w-none text-xl" @Html.Raw(Model.Content)></div>
+            }
+            else
+            {
+                <h1 class="text-center text-2xl">No blog found</h1>
+            }
+        </div>
+    </div>
+</div>
